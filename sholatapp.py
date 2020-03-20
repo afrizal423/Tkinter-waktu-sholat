@@ -2,15 +2,16 @@ from datetime import datetime
 from tkinter import *
 import urllib.request,json
 import tkinter as tk
-import requests
-import json
-import time
+import requests, os, json, time
 
 win = tk.Tk()
 win.title("Jadwal Sholat")
 win.geometry("580x400")
 win.resizable(width=False, height=False)
-win.iconbitmap('masjid.ico')
+if "nt" != os.name:
+    win.iconbitmap('@/home/afrizal/Documents/project/tkinter/Tkinter-waktu-sholat/masjid1.jpg.xbm')
+else:
+    win.iconbitmap('masjid.ico')
 
 class Clock:
     def __init__(self):
@@ -84,7 +85,12 @@ myLabel.pack()
 obj1 = Clock()
 
 label_1 = Label( text="Masukkan kota yang ingin dicari  =",font=("bold", 12))
-label_1.place(x=80,y=70)
+if "nt" != os.name:
+    # Linux
+    label_1.place(x=40,y=70)
+else:
+    # windows
+    label_1.place(x=80,y=70)
 
 entry = Entry(win)
 entry.place(x=330,y=70,width=150)
@@ -92,9 +98,17 @@ label_2 = Label(win,font=("bold", 12),justify='left')
 label_2.place(x=80,y=140)
 label_3 = Label(win,font=("italic", 9),justify='left')
 label_3.place(x=80,y=350)
-Button(win,text="Keluar",command=keluar,width=10,bg='red',fg='white').place(x=150,y=100)
-Button(win,text="Clear",command=lambda : [clear_widget_text(label_2,label_3),entry.delete(0, 'end')],width=10).place(x=250,y=100)
-Button(win,text="Cari",command=sholat,width=10,bg='blue',fg='white').place(x=350,y=100)
+if "nt" != os.name:
+    # Linux
+    Button(win,text="Keluar",command=keluar,width=10,bg='red',fg='white').place(x=100,y=100)
+    Button(win,text="Clear",command=lambda : [clear_widget_text(label_2,label_3),entry.delete(0, 'end')],width=10).place(x=230,y=100)
+    Button(win,text="Cari",command=sholat,width=10,bg='blue',fg='white').place(x=360,y=100)
+else:
+    # windows
+    Button(win,text="Keluar",command=keluar,width=10,bg='red',fg='white').place(x=150,y=100)
+    Button(win,text="Clear",command=lambda : [clear_widget_text(label_2,label_3),entry.delete(0, 'end')],width=10).place(x=250,y=100)
+    Button(win,text="Cari",command=sholat,width=10,bg='blue',fg='white').place(x=350,y=100)
+
 
 
 win.mainloop()

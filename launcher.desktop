@@ -1,0 +1,8 @@
+[Desktop Entry]
+Comment=sholatapp
+Exec=python3 /home/afrizal/Documents/project/tkinter/Tkinter-waktu-sholat/sholatapp.py
+Icon=/home/afrizal/Documents/project/tkinter/Tkinter-waktu-sholat/masjid.ico
+Name=Sholatapp
+StartupNotify=false
+Terminal=false
+Type=Application
