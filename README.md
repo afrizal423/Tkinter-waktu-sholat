@@ -30,5 +30,5 @@ python setup.py build
 ```
 Lokasi hasil eksekusi berada pada /build
 ## Demo
-<!-- ![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif) -->
+![Alt Text](https://github.com/afrizal423/Tkinter-waktu-sholat/blob/master/assets/tkintersholat.gif?raw=true)
 
