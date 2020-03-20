@@ -31,4 +31,7 @@ python setup.py build
 Lokasi hasil eksekusi berada pada /build
 ## Demo
 ![Alt Text](https://github.com/afrizal423/Tkinter-waktu-sholat/blob/master/assets/tkintersholat.gif?raw=true)
+## Releases
+Tagging untuk belajar tiap partnya. <br>
+- [v1.0.0](https://github.com/afrizal423/Tkinter-waktu-sholat/releases/tag/v1.0.0) - Release for windows 
 
