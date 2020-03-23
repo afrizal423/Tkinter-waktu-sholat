@@ -2,17 +2,32 @@ from datetime import datetime
 from tkinter import *
 import urllib.request,json
 import tkinter as tk
+import tkinter.messagebox as MessageBox
 import requests, os, json, time
 
 win = tk.Tk()
 win.title("Jadwal Sholat")
 win.geometry("580x400")
 win.resizable(width=False, height=False)
+
 if "nt" != os.name:
     win.iconbitmap('@/home/afrizal/Documents/project/tkinter/Tkinter-waktu-sholat/masjid1.jpg.xbm')
 else:
     win.iconbitmap('masjid.ico')
+def about():
+    MessageBox.showinfo("About This App", "Dibuat oleh Afrizal Muhammad Yasin")  
+menubar = Menu(win)
+win.config(menu=menubar)
+filemenu = Menu(menubar, tearoff=0)
+menubar.add_cascade(label="About", menu=filemenu)
+filemenu.add_command(label="Tentang aplikasi", command=about)
+# filemenu.add_command(label="Open", command=donothing)
+# filemenu.add_command(label="Save", command=donothing)
+# filemenu.add_command(label="Save as...", command=donothing)
+# filemenu.add_command(label="Close", command=donothing)
+filemenu.add_separator()
 
+filemenu.add_command(label="Exit", command=win.quit)
 class Clock:
     def __init__(self):
         self.time1 = ''
@@ -30,7 +45,7 @@ class Clock:
         self.mFrame.after(200, self.changeLabel) 
 
 def keluar():
-        win.destroy()  
+        win.destroy()
 
 def clear_widget_text(widget, widget2):
     widget['text'] = ""
