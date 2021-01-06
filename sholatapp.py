@@ -11,7 +11,7 @@ win.geometry("580x400")
 win.resizable(width=False, height=False)
 
 if "nt" != os.name:
-    win.iconbitmap('@/home/afrizal/Documents/project/tkinter/Tkinter-waktu-sholat/masjid1.jpg.xbm')
+    win.iconbitmap('@masjid1.jpg.xbm')
 else:
     win.iconbitmap('masjid.ico')
 def about():
