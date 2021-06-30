@@ -53,28 +53,30 @@ def clear_widget_text(widget, widget2):
 
 def sholat():
     kota = entry.get()
-    url = "https://api.banghasan.com/sholat/format/json/kota/nama/"+kota
+    url = "https://api.myquran.com/v1/sholat/kota/cari/"+kota
 
     # Open the URL as Browser, not as python urllib
     page=urllib.request.Request(url,headers={'User-Agent': 'Mozilla/5.0'}) 
     infile=urllib.request.urlopen(page).read()
     data = infile.decode('ISO-8859-1') # Read the content as string decoded with ISO-8859-1
     output = json.loads(data)
-    kota = output['kota']
+    # print(output['data'][0]['lokasi'])
+    kota = output['data']
     try:
         idkota = kota[0]['id']
     except IndexError:
           label_2['text'] = text="Tidak ada kecocokan"
-
-    tanggal = datetime.today().strftime('%Y-%m-%d')
-    urlsholat = "https://api.banghasan.com/sholat/format/json/jadwal/kota/"+idkota+"/tanggal/"+tanggal
+    tanggal = datetime.today().strftime('%Y/%m/%d')
+    # print(idkota, tanggal)
+    urlsholat = "https://api.myquran.com/v1/sholat/jadwal/"+idkota+"/"+tanggal
     page1=urllib.request.Request(urlsholat,headers={'User-Agent': 'Mozilla/5.0'}) 
     infile1=urllib.request.urlopen(page1).read()
     data1 = infile1.decode('ISO-8859-1') # Read the content as string decoded with ISO-8859-1
     output1 = json.loads(data1)
-    datanya = output1['jadwal']['data']
+    # print(output1)
+    datanya = output1['data']['jadwal']
 
-    if output['status'] == "ok":
+    if output['status']:
         tanggalnya = datanya['tanggal']
         terbit = datanya['terbit']
         imsyak = datanya['imsak']
@@ -84,11 +86,11 @@ def sholat():
         ashar = datanya['ashar']
         maghrib = datanya['maghrib']
         isya = datanya['isya']
-        kotanya = kota[0]['nama']
-        label_2['text'] =  text=f'Kota  : {kotanya},\n' f'Hari  : {tanggalnya},\n'f'Matahari Terbit  : {terbit},\n'f'Imsak  : {imsyak},\n' f'Subuh  : {subuh},\n'f'Dhuha  : {dhuha},\n'f'Dhuhur  : {dhuhur},\n'f'Ashar  : {ashar},\n'f'Maghrib  : {maghrib},\n'f'Isya  : {isya},\n'
+        kotanya = output1['data']['lokasi']
+        label_2['text'] =  text=f'Lokasi  : {kotanya},\n' f'Hari  : {tanggalnya},\n'f'Matahari Terbit  : {terbit},\n'f'Imsak  : {imsyak},\n' f'Subuh  : {subuh},\n'f'Dhuha  : {dhuha},\n'f'Dhuhur  : {dhuhur},\n'f'Ashar  : {ashar},\n'f'Maghrib  : {maghrib},\n'f'Isya  : {isya}.\n'
       
 
-        label_3['text'] = text="sumber : https://api.banghasan.com/"
+        label_3['text'] = text="sumber : https://api.myquran.com/"
       
     else:
         print("gagal")
